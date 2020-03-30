@@ -1,0 +1,1 @@
+// alert('Carregou o script.js');
