@@ -22,8 +22,15 @@ class Controller {
             //Os métodos PUT e DELETE são recebidos com o mesmo tratamento
             case 'PUT':
             case 'DELETE':
-                //Pega os dados enviados no php://input e converte de String para um ARRAY de objetos
-                parse_str(file_get_contents('php://input'), $data);
+                $header = getallheaders();
+                if (isset($header['Content-Type']) && $header['Content-Type'] == 'application/json') {
+                    //Pega o JSON e transforma e decodifica para ARRAY
+                    $data = json_decode(file_get_contents('php://input'));
+                } else {
+                    //Pega os dados enviados no php://input e converte de String para um ARRAY de objetos
+                    parse_str(file_get_contents('php://input'), $data);
+                }
+
                 //Faz um cast convertendo de array de objetos para ARRAY
                 return (array) $data;
                 break;
