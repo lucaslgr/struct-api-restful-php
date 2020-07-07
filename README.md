@@ -5,6 +5,7 @@
 ## :rocket: Tecnologias utilizadas
 
 <li>PHP 7.4</li>
+<li>MVP - padrão de projeto </li>
 
 ## :loudspeaker: Apresentação
 
