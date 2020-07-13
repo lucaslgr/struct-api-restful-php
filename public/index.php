@@ -10,9 +10,9 @@
     header("Access-Control-Allow-Methods: *");
 
     //Importando os arquivos de setup
-    require 'config.php';
-    require 'routes.php';
-    require 'vendor/autoload.php';
+    require '../config.php';
+    require '../routes.php';
+    require '../vendor/autoload.php';
 
     //Iniciando a aplicacão
     $c = new Core();
