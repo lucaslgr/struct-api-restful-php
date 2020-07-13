@@ -51,7 +51,7 @@
             $currentController = ucfirst($currentController); //Transoforma a primeira letra em maiúscula
             $prefix = '\Controllers\\';
 
-            if (!file_exists('Controllers/'.$currentController.'.php') ||
+            if (!file_exists('../Controllers/'.$currentController.'.php') ||
                 !method_exists($prefix.$currentController, $currentAction)) {
                 $currentController = 'NotfoundController';
                 $currentAction = 'index';
