@@ -67,7 +67,7 @@ class Controller {
     public function returnJson($array, $status_code = NULL)
     {
         //Definindo o cabeçalho da resposta
-        http_response_code($status_code);
+        http_response_code(intval($status_code));
         header("Content-Type: application/json");
         echo json_encode($this->utf8ize( $array ) );
         exit;
