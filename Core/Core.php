@@ -2,6 +2,11 @@
     namespace Core;
 
     class Core {
+        /**
+         * Identifica Controller, Action e Params da requisição e direciona para o responsavel
+         *
+         * @return void
+         */
         public function run() {
             $url = '/';
 
@@ -62,7 +67,12 @@
             );
         }
 
-        //Checa se a URL da requisição do client bate com alguma das rotas
+        /**
+         * Checa se a URL da requisição do client bate com alguma das rotas
+         *
+         * @param [string] $url
+         * @return void
+         */
         private function checkRoutes($url)
         {
             global $routes;

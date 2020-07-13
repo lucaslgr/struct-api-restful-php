@@ -5,13 +5,21 @@ use JsonSerializable;
 
 class Controller {
     
-    //Retorna o tipo do método da requisição, Ex: PUT, PUSH, DELTE, GET, etc...
+    /**
+     * Retorna o tipo do método da requisição, Ex: PUT, PUSH, DELTE, GET, etc...
+     *
+     * @return void
+     */
     public function getMethod()
     {
         return $_SERVER['REQUEST_METHOD'];
     }
 
-    //Pega os dados enviados na requisição de acordo com o tratamento necessário para cada método de requisição
+    /**
+     * Pega os dados enviados na requisição de acordo com o tratamento necessário para cada método de requisição
+     *
+     * @return void
+     */
     public function getRequestData()
     {
         switch($this->getMethod()){
@@ -50,12 +58,35 @@ class Controller {
         }
     }
 
-    //Converte o array em uma responsa JSON
+    /**
+     * Converte um array em uma resposta em JSON escreve na saida da requisição
+     *
+     * @param [array] $array
+     * @return void
+     */
     public function returnJson($array)
     {
         //Definindo o cabeçalho da resposta
         header("Content-Type: application/json");
-        echo json_encode($array);
-        exit();
+        echo json_encode($this->utf8ize( $array ) );
+        exit;
+    }
+
+    /**
+     * Função para forçar o encode UTF-8 nos caracteres
+     *
+     * @param [string || array] $d
+     * @return [ string || array]
+     */
+    private function utf8ize($d)
+    {
+        if (is_array($d)) {
+            foreach ($d as $k => $v) {
+                $d[$k] = $this->utf8ize($v);
+            }
+        } else if (is_string($d)) {
+            return utf8_encode($d);
+        }
+        return $d;
     }
 }

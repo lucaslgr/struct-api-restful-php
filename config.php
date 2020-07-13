@@ -1,6 +1,12 @@
 <?php
-    require 'environment.php';
+/**
+ * =============================================================================================
+ *                Arquivo de configuração do banco de dados/PDO e da const BASE_URL 
+ * =============================================================================================
+ */
 
+    require 'environment.php';
+    
     if (ENVIRONMENT == 'development') {
         define('BASE_URL', 'http://127.0.0.1/webservices/Project-DevestagramAPI/');
         $config['dbname'] = 'project-api-devstagram'; //Usei essa tabela para exemplo
