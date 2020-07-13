@@ -68,6 +68,8 @@ class Controller {
     {
         //Definindo o cabeçalho da resposta
         http_response_code(intval($status_code));
+        //!OR
+        // header("HTTP/1.1 $status_code $status_msg");
         header("Content-Type: application/json");
         echo json_encode($this->utf8ize( $array ) );
         exit;
