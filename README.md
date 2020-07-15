@@ -53,8 +53,8 @@ Este repositório é um projeto com uma estrutura padrão para a criação de AP
 - As configurações de Banco de Dados e URL estão no arquivo **/config.php**, tanto para **ENVIRONMENT=development** e **ENVIRONMENT=production**:
 
 ```php
-    define('BASE_URL', 'http://127.0.0.1/webservices/Estrutura-API-RESTful/'); //Configurar corretamente a BASE_URL de acordo com o local onde vai ser alocado o projeto
-    $config['dbname'] = 'project-api-devstagram'; //tabela de exemplo
+    define('BASE_URL', 'http://127.0.0.1/struct-api-restful-php/'); //Configurar corretamente a BASE_URL de acordo com o local onde vai ser alocado o projeto
+    $config['dbname'] = 'project-struct-api-restful'; //banco de exemplo
     $config['host'] = '127.0.0.1'; //ou 'localhost'
     $config['dbuser'] = 'root'; //login BD exemplo
     $config['dbpass'] = ''; //senha BD exemplo
@@ -62,7 +62,7 @@ Este repositório é um projeto com uma estrutura padrão para a criação de AP
 
 - É importante configurar corretamente a constante *BASE_URL* dentro do **config.php**:
   
-  > define('BASE_URL', 'http://127.0.0.1/webservices/Estrutura-API-RESTful/'); //EXEMPLO 
+  > define('BASE_URL', 'http://127.0.0.1/struct-api-restful-php/'); //EXEMPLO 
 
 ## :man_technologist: Autoria
 
