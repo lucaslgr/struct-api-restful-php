@@ -10,9 +10,19 @@ class Controller {
      *
      * @return void
      */
-    public function getMethod()
+    protected function getMethod()
     {
         return $_SERVER['REQUEST_METHOD'];
+    }
+
+    /**
+     * Retorna o Authorization enviado no cabeçalho da requisição
+     *
+     * @return string
+     */
+    protected function getAuthorization()
+    {
+        return $_SERVER['HTTP_AUTHORIZATION'];
     }
 
     /**
@@ -20,7 +30,7 @@ class Controller {
      *
      * @return void
      */
-    public function getRequestData()
+    protected function getRequestData()
     {
         switch($this->getMethod()){
             case 'GET':
@@ -64,7 +74,7 @@ class Controller {
      * @param [array] $array
      * @return void
      */
-    public function returnJson($array, $status_code = NULL)
+    protected function returnJson($array, $status_code = NULL)
     {
         //Definindo o cabeçalho da resposta
         http_response_code(intval($status_code));
@@ -91,5 +101,21 @@ class Controller {
             return utf8_encode($d);
         }
         return $d;
+    }
+
+    /**
+     * Função para setar uma sintaxe padrão de erro na resposta
+     *
+     * @param [int] $status_code
+     * @param [string] $msg
+     * @param [array] $response
+     * @return void
+     */
+    protected function setError($status_code, $msg, &$response)
+    {
+        $response['errors'] = [
+            'status_code' => $status_code,
+            'msg' => $msg
+        ];
     }
 }
