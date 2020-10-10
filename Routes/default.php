@@ -5,9 +5,7 @@
  * =============================================================================================
  */
 
-    global $routes;
-    $routes = array();
 
     //Cofiguração das rotas
-    $routes['/teste'] = '/home/teste';
+    $this->get('/teste', 'home/teste');
 ?>

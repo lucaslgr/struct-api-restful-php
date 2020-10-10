@@ -2,6 +2,12 @@
     namespace Core;
 
     class Core {
+        //Arrays com as suas respectivas rotas por tipo de verbo http
+        private array $get_routes;
+        private array $post_routes;
+        private array $put_routes;
+        private array $delete_routes;
+
         /**
          * Identifica Controller, Action e Params da requisição e direciona para o responsavel
          *
@@ -75,7 +81,10 @@
          */
         private function checkRoutes($url)
         {
-            global $routes;
+            //Carrega as rotas do arquivo especificado
+            $this->loadRoutes('default');
+
+            $routes = $this->getRoutesByHttpVerb();
 
             foreach($routes as $pt => $newurl){
                 //Etapa 1
@@ -118,6 +127,63 @@
                 }
             }
             return $url;
+        }
+
+        //Carrega um modulo de rotas de acordo com o nome passado como parametro
+        private function loadRoutes(string $name_file_routes)
+        {
+            $path = "./Routes/$name_file_routes";
+            if(\file_exists($path)){
+                require_once $path;
+            }
+        }
+
+        //Checa o metodo HTTP requisitado e pega as respectivas rotas
+        private function getRoutesByHttpVerb():array
+        {
+            $method_http = $_SERVER['REQUEST_METHOD'];
+            switch($method_http){
+                case 'GET':
+                    return $this->get_routes;
+                    break;
+                
+                //Os métodos PUT e DELETE são recebidos com o mesmo tratamento
+                case 'PUT':
+                    return $this->put_routes;
+                    break;
+
+                case 'DELETE':
+                    return $this->delete_routes;
+                    break;
+                
+                case 'POST':
+                    return $this->post_routes;
+                    break; 
+                default:
+                    return [];
+                    break;
+            }
+        }
+
+        //Funções para setar os arrays com as rotas e os callbacks
+        public function get(string $route, $path_action)
+        {
+            $this->get[$route] = $path_action;
+        }
+
+        public function post(string $route, $path_action)
+        {
+            $this->post[$route] = $path_action;
+        }
+
+        public function put(string $route, $path_action)
+        {
+            $this->put[$route] = $path_action;
+        }
+
+        public function delete(string $route, $path_action)
+        {
+            $this->delete[$route] = $path_action;
         }
     }
 ?>
